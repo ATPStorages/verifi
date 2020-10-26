@@ -27,6 +27,7 @@ Once XCode is done installing, go to **Preferences > Downloads** and install "Co
 Since most distros automatically come with Python 2.7, the installation process is much easier. However, if your distro doesn't, try looking up how to.
 <br>
 To install the C++ build tools, run `sudo apt-get install build-essential`.
+
 ---
 Once you have installed build tools for your system, navigate to verifi's directory with `cd`, and then run `npm install`.
 
