@@ -3,7 +3,16 @@ const router = require("express").Router(),
 
     tokens = new enmap({ name: "tokens", dataDir: __dirname + "/../database" });
 
-router.post("/settoken", async(req, res, next)=> {
+router.get("/token/:rblxid", async(req, res, next)=> {
+    if(isNaN(req.params.rblxid))
+        return next({status: 400, message: "provide valid roblox id"});
+    
+    let discid = await tokens.get(req.params.rblxid);
+    if(!discid) return next({status: 404, message: "unable to find specified id in database"});
+    else res.json(discid);
+});
+
+router.post("/token", async(req, res, next)=> {
     if((isNaN(req.query.discid) || isNaN(req.query.rblxid)) || !req.query.tag)
         return next({status: 400, message: "provide discord and roblox id with tag (example#0000) in query"});
     else if(tokens.get(req.query.rblxid))
@@ -13,16 +22,7 @@ router.post("/settoken", async(req, res, next)=> {
     res.json({"database_key": req.query.rblxid});
 });
 
-router.get("/gettoken/:rblxid", async(req, res, next)=> {
-    if(isNaN(req.params.rblxid))
-        return next({status: 400, message: "provide valid roblox id"});
-    
-    let discid = await tokens.get(req.params.rblxid);
-    if(!discid) return next({status: 404, message: "unable to find specified id in database"});
-    else res.json({"discord-id": discid});
-});
-
-router.delete("/unlinktoken/:rblxid", async(req, res, next)=> {
+router.delete("/token/:rblxid", async(req, res, next)=> {
     if(isNaN(req.params.rblxid))
         return next({status: 400, message: "provide valid roblox id"});
 
@@ -30,7 +30,7 @@ router.delete("/unlinktoken/:rblxid", async(req, res, next)=> {
     if(!discid) return next({status: 404, message: "unable to find specified id in database"});
     else {
         tokens.delete(req.params.rblxid);
-        res.json({"discord-id": discid});
+        res.json({"success": true})
     }
 });
 
@@ -38,4 +38,5 @@ router.all("/test", (req, res)=> {
     res.end(`Controller "verify" - Router online, and using ${req.protocol}.`);
 });
 
+//commit test
 module.exports = router;
