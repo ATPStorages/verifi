@@ -35,6 +35,7 @@ Once you have installed build tools for your system, navigate to verifi's direct
 If you had a better-sqlite3 installation issue, check their [troubleshooting guide](https://github.com/JoshuaWise/better-sqlite3/blob/HEAD/docs/troubleshooting.md).
 <br>
 If you had a different installation problem, submit an [issue](https://github.com/ATPStorages/verifi/issues).
+
 ---
 ## Starting verifi
 
