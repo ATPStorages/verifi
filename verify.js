@@ -12,7 +12,7 @@ router.get("/token/:rblxid", async(req, res, next)=> {
     else res.json(discid);
 });
 
-router.post("/settoken", async(req, res, next)=> {
+router.post("/token", async(req, res, next)=> {
     if((isNaN(req.query.discid) || isNaN(req.query.rblxid)) || !req.query.tag)
         return next({status: 400, message: "provide discord and roblox id with tag (example#0000) in query"});
     else if(tokens.get(req.query.rblxid))
