@@ -47,7 +47,7 @@ router.delete("/tokens/:rblxid(\\d+)?", async(req, res, next)=> {
 });
 
 router.all("/test", (req, res)=> {
-    res.end(`Controller "verify" - Router online, and using ${req.protocol}.`);
+    res.end(`running using ${req.protocol}.`);
 });
 
 module.exports = router;
