@@ -48,11 +48,11 @@ If you don't have a domain to run verifi on, you can temporarily use [ngrok](htt
 
 verifi API:
 
-### GET /verify/token/:rblxid
+### GET /verify/tokens/:rblxid
 
-Returns object set by /verify/settoken.
+Returns object set by POST /verify/tokens.
 
-### POST /verify/token
+### POST /verify/tokens
 <table>
     <tr>
         <th>Query Value</th>
@@ -91,5 +91,5 @@ Creates object:
     </tr>
 </table>
 
-### DELETE /verify/token/:rblxid
+### DELETE /verify/tokens/:rblxid
 Removes object set by POST /verify/token (unlink verified account)
